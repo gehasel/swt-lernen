@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Website Title</title>
+  <script>
+    function getPassword() {
+      var input = document.createElement("input");
+      input.type = "password";
+      document.body.appendChild(input);
+      input.focus();
+      input.select();
+      var password = prompt("Please enter the password:");
+      document.body.removeChild(input);
+      return password;
+    }
+
+    function checkPassword() {
+      var password = getPassword();
+      var hash = sha256(password); // assuming you're using the SHA-256 hash function
+      var predefinedHash = "predefined_hash";
+
+      if (hash === predefinedHash) {
+        document.getElementById("content").style.display = "block";
+      } else {
+        alert("Incorrect password, please try again.");
+        checkPassword(); // prompt again
+      }
+    }
+  </script>
+  <script src="scripts/sha256.js"></script> <!-- assuming you're using a third-party library like jsSHA to compute the SHA-256 hash -->
+</head>
+<body onload="checkPassword()">
+  <div id="content" style="display: none;">
+    <!-- Your website content goes here -->
+    Hi.
+  </div>
+</body>
+</html>

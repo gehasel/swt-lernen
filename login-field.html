@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Website Title</title>
+  <script src="scripts/sha256.js"></script> <!-- assuming you're using a third-party library like jsSHA to compute the SHA-256 hash -->
+</head>
+<body>
+  <div id="content" style="display: none;">
+    <!-- Your website content goes here -->
+  </div>
+
+  <form onsubmit="return checkPassword();">
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password">
+    <input type="submit" value="Submit">
+  </form>
+
+  <script>
+    function checkPassword() {
+      var password = document.getElementById("password").value;
+      var hash = sha256(password); // assuming you're using the SHA-256 hash function
+      var predefinedHash = "predefined_hash";
+
+      if (hash === predefinedHash) {
+        document.getElementById("content").style.display = "block";
+        return true;
+      } else {
+        alert("Incorrect password, please try again.");
+        return false;
+      }
+    }
+  </script>
+</body>
+</html>
