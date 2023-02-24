@@ -13,15 +13,14 @@
 
     <!-- password prompt -->
     <script>
-      function checkPassword() {
-          var password = document.getElementById("password").value;
+      window.onload = function() {
+          var password = prompt("Please enter the password:");
           var hash = sha256(password);
 
           if (hash === "33005a04c54d5876bfb7b02d2602c7eab80820e3bad4499173105fea0dae2bf5") { // yeah, it's "I love SWT!"
               document.getElementById("content").style.display = "block";
-              document.getElementById("login-form").style.display = "none";
           } else {
-              alert("Incorrect password, please try again.");
+              window.location.reload();
           }
       }
     </script>
@@ -29,11 +28,6 @@
   </head>
   
   <body>
-    <div id="login-form">
-      <label for="password">Password:</label>
-      <input type="password" id="password">
-      <button onclick="checkPassword()">Submit</button>
-    </div>
     <div id="content" style="display: none;">
       <div>Hi, was geht.</div>
     </div>
